@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <title>Tambah Data</title>
+    <link rel="stylesheet" href="css\bootstrap.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">E-ClothPrinter</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="menu.php">HOME</a>
+          <a class="nav-item nav-link" href="add.html">ORDER</a>
+          <a class="nav-item nav-link" href="galery.php">GALERI</a>
+          <a class="nav-item nav-link" href="index.php">logout</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+    <form
+      action="add.php"
+      method="post"
+      name="form1"
+      enctype="multipart/form-data"
+    >
+      <table width="25%" border="0">
+        <tr>
+          <td><label for="nama">Nama</label><input class="form-control" type="text" name="nama" /></td>
+        </tr>
+        <tr>
+          <td>
+            <label for="tipe">Jenis Sablon</label>
+            <select class="custom-select d-block w-100" name="tipe" id="tipe" onchange="CariHarga()">
+            <option value="-">-Pilih Jenis Sablon</option>
+            <option value="Plastisol">Plastisol</option>
+            <option value="Rubber">Rubber</option>
+            <option value="GlowInTheDark">Glow In The Dark</option>
+            <option value="Foam">Foam</option>
+            <option value="Premium">Premiuk</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><div class="mb-3">
+            <label for="harga">Harga</label>
+            <input type="number" class="form-control" id="harga" name="harga" readonly></td>
+        </tr>
+        <tr>
+          <td><div class="mb-3">
+            <label for="Qty">QTY</label>
+            <input type="number" class="form-control" id="qty" name="qty" onchange="CariTotal(),CariTotal()">
+        </tr>
+        <tr>
+          <td><div class="mb-3">
+            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com"></td>
+        </tr>
+        <tr>
+          <td><input class="btn btn-secondary" type="file" name="gambar" /></td>
+        </tr>
+        <tr>
+          <td><div class="mb-3">
+            <label for="total">Total <span class="text-muted">(Order-Total)</span></label>
+            <input type="number" class="form-control" id="total" name="total" placeholder="0" readonly></td>
+        </tr>
+        <tr>
+          <td><input class="btn btn-primary btn-lg btn-block" type="submit" name="Submit" value="Add" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
+
+<script>
+  function CariHarga(){
+  var harga=0;
+  var tipe = document.getElementById("tipe").value;
+
+  if(tipe == "Plastisol"){
+    harga = 15000;
+  }
+  else if(tipe == "Rubber"){
+    harga = 12000;
+  }
+  else if(tipe == "GlowInTheDark"){
+    harga = 25000;
+  }
+  else if(tipe == "Foam"){
+    harga = 17000;
+  }
+  else if(tipe == "Premium"){
+    harga = 5000;
+  }
+  else{
+    harga = 0;
+  }
+  document.getElementById("harga").value = harga;
+  }
+  function CariTotal(){
+    var total = 0;
+    var harga = document.getElementById("harga").value;
+    var qty = document.getElementById("qty").value;
+    var total = harga * qty;
+    document.getElementById("total").value = total;
+  }
+</script>
+  </body>
+</html>
